@@ -46,9 +46,9 @@ class TodoApp extends React.Component {
       render() {
           return (
               <ul>
-                  {/* {this.props.items.map(item => (
-                      <li key={item.id}>{item.text}<button onClick={this.delete.bind(this, item)}>Delete</button></li>
-                  ))}  */}
+                  {this.props.items.map(item => (
+                      <li key={item.id}>{item.text}<button onClick={()=>console.log("hola")}>Delete</button></li>
+                  ))} 
               </ul>
           );
       }
