@@ -1,6 +1,33 @@
 import React from 'react'
 
-class TaskForm extends React.Component {
+class Dashboard extends React.Component {
+   
+    delete(id){
+        this.props.delete(id);
+     }
+
+       render() {
+           return (
+               <div>
+                   {
+                      this.props.items.map((item)=>
+                      <p key={item.id}>
+                         {item.id}
+                         {item.title}
+                         {item.person}
+                         {item.state}
+                         {item.deadline}
+                         {item.created}
+                         <button onClick={this.delete.bind(this, item)}>Delete</button>
+                      </p>
+                      )
+                   }
+               </div>
+           );
+       }
+   }
+
+class Task extends React.Component {
       constructor(props) {
           super(props);
           this.state = {
@@ -21,7 +48,7 @@ class TaskForm extends React.Component {
           return (
               <div>
                   <h3>TODO</h3>
-                  <TaskList items={this.state.items} delete={this.delete}/>
+                  <Dashboard items={this.state.items} delete={this.delete}/>
                   <form onSubmit={this.handleSubmit}>
                       <input id="title"onChange={this.handleChange} value={this.state.title} />
                       <input id="person" onChange={this.handleChange} value={this.state.person} />
@@ -70,32 +97,7 @@ class TaskForm extends React.Component {
       }
   }
   
-  class TaskList extends React.Component {
-   
-   delete(id){
-      this.props.delete(id);
-   }
 
-      render() {
-          return (
-              <div>
-                  {
-                     this.props.items.map((item)=>
-                     <p key={item.id}>
-                        {item.id}
-                        {item.title}
-                        {item.person}
-                        {item.state}
-                        {item.deadline}
-                        {item.created}
-                        <button onClick={this.delete.bind(this, item)}>Delete</button>
-                     </p>
-                     )
-                  }
-              </div>
-          );
-      }
-  }
   
 
-export default TaskForm
+export default Dashboard
