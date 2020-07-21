@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import TodoApp from './TodoApp';
 import TaskForm from './TaskForm';
 
 class App extends React.Component{
@@ -21,31 +20,32 @@ class App extends React.Component{
   
   render(){
      return(
-         <Child delete={this.delete} data={this.state.data}/>
+         <TaskForm />
+         // <Child delete={this.delete} data={this.state.data}/>
      );
   }
 }
 
-class Child extends React.Component{
+// class Child extends React.Component{
 
-  delete(id){
-      this.props.delete(id);
-  }
+//   delete(id){
+//       this.props.delete(id);
+//   }
   
-  render(){
-     return(
-        <div>
-          {
-             this.props.data.map(el=>
-                 <p onClick={this.delete.bind(this, el)}>{el}</p>
-             )
-          }
-          <TodoApp />
-          <TaskForm />
-        </div>
-     )
-  }
-}
+//   render(){
+//      return(
+//         <div>
+           
+//           {/* {
+//              this.props.data.map((el,index)=>
+//                  <p key={index} onClick={this.delete.bind(this, el)}>{el}</p>
+//              )
+//           } */}
+          
+//         </div>
+//      )
+//   }
+// }
 
 
 ReactDOM.render(<App/>, document.getElementById('app'))
