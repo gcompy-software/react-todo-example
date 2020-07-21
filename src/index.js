@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './TodoApp'
+import TaskForm from './TaskForm';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TaskForm />
   </React.StrictMode>,
   document.getElementById('app')
 );
