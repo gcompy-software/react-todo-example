@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import TodoApp from './TodoApp';
+import TaskForm from './TaskForm';
 
 class App extends React.Component{
   constructor(){
@@ -40,6 +41,7 @@ class Child extends React.Component{
              )
           }
           <TodoApp />
+          <TaskForm />
         </div>
      )
   }
