@@ -357,3 +357,42 @@ const TaskForm = () => {
 }
 
 export default TaskForm
+
+
+
+
+items = [
+  {
+    "id": 10,
+    "title": "Subir el proyecto a la nube",
+    "person": "Guido Miranda",
+    "state": "progress",
+    "deadline": 1591802130,
+    "created": 1591370128
+  },
+  {
+    "id": 11,
+    "title": "Optimizar Base de Datos",
+    "person": "Guido Miranda",
+    "state": "done",
+    "deadline": 1591802130,
+    "created": 1591370128
+  },
+  {
+    "id": 12,
+    "title": "Testear Performance",
+    "person": "Guido Miranda",
+    "state": "done",
+    "deadline": 1591802130,
+    "created": 1591370128
+  }
+]
+
+data = {
+  "id": 12,
+  "title": "Testear Performance",
+  "person": "Guido Miranda",
+  "state": "done",
+  "deadline": 1591802130,
+  "created": 1595403991227
+}

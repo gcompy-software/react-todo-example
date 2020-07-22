@@ -1,4 +1,5 @@
 import React from 'react'
+import API from './api.js'
 
 class Dashboard extends React.Component {
 
@@ -15,6 +16,17 @@ constructor(props) {
         }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+componentDidMount(){
+    API.get('tasks')
+        .then(resp => {
+            console.log(resp.data)
+            this.setState(
+                {
+                    items: resp.data
+                })
+        })
 }
 
 handleChange(e) {
@@ -51,25 +63,44 @@ handleChange(e) {
 
 handleSubmit(e) { 
     e.preventDefault();
-
     var data = {
         id: this.state.id || Date.now(),
         title: this.state.title,
         person: this.state.person,
         state: this.state.state,
         deadline: this.state.deadline,
-        created: Date.now(),
+        created: this.state.deadlin||Date.now(),
     }
 
-    if(!this.state.id){ //Add row   
-        this.setState(prevState=>({
-            items: [...prevState.items,data]
-        }))
-    }else{ //update row
-        this.setState(
-            {
-                items: [data]
-            })     
+    if(!this.state.id){ //Add row        
+        API.post('tasks',data)
+        .then(resp => {
+            console.log(resp.data)
+            let data = resp.data
+            this.setState(prevState=>({
+                items: [...prevState.items,data]
+            }))
+            alert("Success")
+        }).catch((err)=>{
+            console.error(err)
+        })
+    }else{
+        API.put(`tasks/${this.state.id}`,data)
+        .then(resp => {
+            this.setState((prevState)=>(
+                console.log(resp.data)    
+                //console.log(prevState.items)
+                
+                // {
+                //     items:[{data}]
+                // }
+            ))
+            alert("Succes")
+        }).catch((err)=>{
+            alert('hola')
+            console.error(err)
+        })
+  
     }
     this.clear()
 }
@@ -97,7 +128,7 @@ handleSubmit(e) {
                        <input id="state" onChange={this.handleChange} value={this.state.state} />
                        <input id="deadline" onChange={this.handleChange} value={this.state.deadline} />
                        <input id="created" onChange={this.handleChange} value={this.state.created} />
-                       <button type="submit">Add</button>
+                       <button type="submit">Guardar</button>
                    </form>
             </div>
         );
